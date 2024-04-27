@@ -1,5 +1,6 @@
 package com.ada.rotas.demotomtom.model.usuario;
 
+import com.ada.rotas.demotomtom.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

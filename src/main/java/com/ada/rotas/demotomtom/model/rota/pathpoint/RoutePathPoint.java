@@ -1,4 +1,4 @@
-package com.ada.rotas.demotomtom.model.rota;
+package com.ada.rotas.demotomtom.model.rota.pathpoint;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

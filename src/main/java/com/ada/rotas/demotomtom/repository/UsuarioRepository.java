@@ -1,5 +1,6 @@
-package com.ada.rotas.demotomtom.model.usuario;
+package com.ada.rotas.demotomtom.repository;
 
+import com.ada.rotas.demotomtom.model.usuario.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 

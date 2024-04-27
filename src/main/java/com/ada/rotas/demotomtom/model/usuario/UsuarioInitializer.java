@@ -1,5 +1,6 @@
 package com.ada.rotas.demotomtom.model.usuario;
 
+import com.ada.rotas.demotomtom.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -13,15 +14,15 @@ public class UsuarioInitializer implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        Usuario usuario1 = new Usuario();
-        usuario1.setLogin("igor.ribeiro@tomtom.com");
-        usuario1.setSenha("$2a$12$Jbd2.lDyDSkXbj/VPyjmu.Kubsn1oGdV2KCFQaQhxiSi7efVMNXAW");
+        Usuario usuario = new Usuario();
+        usuario.setLogin("igor@gmail.com");
+        usuario.setSenha("$2a$12$Jbd2.lDyDSkXbj/VPyjmu.Kubsn1oGdV2KCFQaQhxiSi7efVMNXAW");
 
-        Usuario usuario2 = new Usuario();
-        usuario2.setLogin("maria.silva@tomtom.com");
-        usuario2.setSenha("$2a$12$0LCdUN/b6EwIntBps6fVAeT/cprU3RfUrEajZ9mx5KRlGEbyvnP6K");
+//        Usuario usuario1 = new Usuario();
+//        usuario1.setLogin("joao@gmail.com");
+//        usuario1.setSenha("$2a$12$0LCdUN/b6EwIntBps6fVAeT/cprU3RfUrEajZ9mx5KRlGEbyvnP6K");
 
-        usuarioRepository.save(usuario1);
-        usuarioRepository.save(usuario2);
+        usuarioRepository.save(usuario);
+//        usuarioRepository.save(usuario1);
     }
 }

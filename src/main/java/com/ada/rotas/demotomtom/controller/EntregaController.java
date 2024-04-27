@@ -1,6 +1,8 @@
 package com.ada.rotas.demotomtom.controller;
 
-import com.ada.rotas.demotomtom.model.Entrega;
+import com.ada.rotas.demotomtom.model.entrega.CadastroEntregaDTO;
+import com.ada.rotas.demotomtom.model.entrega.Entrega;
+import com.ada.rotas.demotomtom.model.entrega.ExibicaoEntregaDTO;
 import com.ada.rotas.demotomtom.repository.EntregaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,21 +28,22 @@ public class EntregaController {
     @GetMapping("/{id}")
     public ResponseEntity buscarPorId(@PathVariable Long id) {
         var entrega = repository.getReferenceById(id);
-        return ResponseEntity.ok(new Entrega());
+        return ResponseEntity.ok(new ExibicaoEntregaDTO(entrega));
     }
 
     @GetMapping
-    public ResponseEntity<Page<Entrega>> listar(@PageableDefault(size = 10, sort = {"idEntrega"}) Pageable pageable) {
-        var page = repository.findAll(pageable);
+    public ResponseEntity<Page<ExibicaoEntregaDTO>> listar(@PageableDefault(size = 10, sort = {"idEntrega"}) Pageable pageable) {
+        var page = repository.findAll(pageable).map(ExibicaoEntregaDTO::new);
         return ResponseEntity.ok(page);
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid Entrega entrega, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity cadastrar(@RequestBody @Valid CadastroEntregaDTO dados, UriComponentsBuilder uriBuilder) {
+        var entrega = new Entrega(dados);
         repository.save(entrega);
         var uri = uriBuilder.path("/entregas/{id}").buildAndExpand(entrega.getIdEntrega()).toUri();
-        return ResponseEntity.created(uri).body(new Entrega());
+        return ResponseEntity.created(uri).body(new ExibicaoEntregaDTO(entrega));
     }
 
     @PutMapping
@@ -48,14 +51,22 @@ public class EntregaController {
     public ResponseEntity atualizar(@RequestBody @Valid Entrega atualizacao) {
         var entrega = repository.getReferenceById(atualizacao.getIdEntrega());
         entrega.atualizar(atualizacao);
-        return ResponseEntity.ok(new Entrega());
+        return ResponseEntity.ok(new ExibicaoEntregaDTO(entrega));
+    }
+
+    @PatchMapping
+    @Transactional
+    public ResponseEntity finalizarEntrega(@RequestBody @Valid Entrega atualizacao) {
+        var entrega = repository.getReferenceById(atualizacao.getIdEntrega());
+        entrega.finalizar();
+        return ResponseEntity.ok(new ExibicaoEntregaDTO(entrega));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity excluir(@PathVariable Long id) {
         var entrega = repository.getReferenceById(id);
-        repository.delete(entrega);
+        entrega.excluir();
         return ResponseEntity.noContent().build();
     }
 

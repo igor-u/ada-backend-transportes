@@ -1,5 +1,6 @@
 package com.ada.rotas.demotomtom.model.rota;
 
+import com.ada.rotas.demotomtom.model.rota.pathpoint.RoutePathPoint;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

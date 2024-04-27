@@ -3,7 +3,9 @@ package com.ada.rotas.demotomtom.controller;
 import com.ada.rotas.demotomtom.model.rota.ExibicaoRotaDTO;
 import com.ada.rotas.demotomtom.model.rota.Rota;
 import com.ada.rotas.demotomtom.model.rota.RotaAtualizacao;
+import com.ada.rotas.demotomtom.model.rota.pathpoint.RoutePathPoint;
 import com.ada.rotas.demotomtom.repository.RotaRepository;
+import com.ada.rotas.demotomtom.repository.RoutePathPointRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,21 +21,25 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class RotaController {
 
     @Autowired
-    private RotaRepository repository;
+    private RotaRepository rotaRepository;
 
-    public RotaController(RotaRepository repository) {
-        this.repository = repository;
+    @Autowired
+    private RoutePathPointRepository routePathPointRepository;
+
+    public RotaController(RotaRepository rotaRepository, RoutePathPointRepository routePathPointRepository) {
+        this.rotaRepository = rotaRepository;
+        this.routePathPointRepository = routePathPointRepository;
     }
 
     @GetMapping("/{id}")
     public ResponseEntity buscarPorId(@PathVariable Long id) {
-        var rota = repository.getReferenceById(id);
+        var rota = rotaRepository.getReferenceById(id);
         return ResponseEntity.ok(new ExibicaoRotaDTO(rota));
     }
 
     @GetMapping
     public ResponseEntity<Page<ExibicaoRotaDTO>> listar(@PageableDefault(size = 10, sort = {"routeId"}) Pageable pageable) {
-        var page = repository.findAll(pageable).map(ExibicaoRotaDTO::new);
+        var page = rotaRepository.findAll(pageable).map(ExibicaoRotaDTO::new);
         return ResponseEntity.ok(page);
     }
 
@@ -48,7 +54,7 @@ public class RotaController {
     @PutMapping
     @Transactional
     public ResponseEntity atualizar(@RequestBody @Valid RotaAtualizacao atualizacao) {
-        var rota = repository.getReferenceById(atualizacao.routeId());
+        var rota = rotaRepository.getReferenceById(atualizacao.routeId());
         rota.atualizar(atualizacao);
         return ResponseEntity.ok(new ExibicaoRotaDTO(rota));
     }
@@ -56,8 +62,11 @@ public class RotaController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity excluir(@PathVariable Long id) {
-        var rota = repository.getReferenceById(id);
-        repository.delete(rota);
+        var rota = rotaRepository.getReferenceById(id);
+        for (RoutePathPoint rpp : rota.getRoutePathPoints()) {
+            routePathPointRepository.delete(rpp);
+        }
+        rotaRepository.delete(rota);
         return ResponseEntity.noContent().build();
     }
 

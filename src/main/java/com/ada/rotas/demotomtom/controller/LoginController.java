@@ -1,7 +1,7 @@
 package com.ada.rotas.demotomtom.controller;
 
 import jakarta.validation.Valid;
-import com.ada.rotas.demotomtom.model.usuario.DadosAutenticacao;
+import com.ada.rotas.demotomtom.model.usuario.UsuarioAutenticacaoDTO;
 import com.ada.rotas.demotomtom.model.usuario.Usuario;
 import com.ada.rotas.demotomtom.infra.security.TokenJWT;
 import com.ada.rotas.demotomtom.infra.security.TokenService;
@@ -25,7 +25,7 @@ public class LoginController {
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
+    public ResponseEntity efetuarLogin(@RequestBody @Valid UsuarioAutenticacaoDTO dados) {
         var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
         var authentication = manager.authenticate(authenticationToken);
 
