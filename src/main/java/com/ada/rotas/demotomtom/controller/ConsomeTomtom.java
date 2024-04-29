@@ -1,12 +1,12 @@
 package com.ada.rotas.demotomtom.controller;
 
-import com.ada.rotas.demotomtom.model.rota.ExibicaoRotaDTO;
 import com.ada.rotas.demotomtom.model.rota.Rota;
 import com.ada.rotas.demotomtom.model.rota.pathpoint.RoutePathPoint;
 import com.ada.rotas.demotomtom.repository.RotaRepository;
 import com.ada.rotas.demotomtom.repository.RoutePathPointRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +24,7 @@ public class ConsomeTomtom {
     RoutePathPointRepository routePathPointRepository;
 
     @GetMapping("{rota}")
+    @Transactional
     public Rota consumir(@PathVariable("rota") String rotaId) {
         RestTemplate restTemplate = new RestTemplate();
 

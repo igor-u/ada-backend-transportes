@@ -27,7 +27,7 @@ public class SecurityConfigurations {
         return
                 http
                         .csrf(AbstractHttpConfigurer::disable)
-                        //.ignoringRequestMatchers("/h2-console/**"))
+//                        .ignoringRequestMatchers("/h2-console/**"))
                         .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                         .authorizeHttpRequests(req -> {
 //                            req.requestMatchers("/h2-console/**").permitAll();

@@ -2,7 +2,7 @@ package com.ada.rotas.demotomtom.model.rota;
 
 import jakarta.validation.constraints.NotNull;
 
-public record RotaAtualizacao(
+public record RotaAtualizacaoDTO(
         @NotNull
         Long routeId,
         String routeName

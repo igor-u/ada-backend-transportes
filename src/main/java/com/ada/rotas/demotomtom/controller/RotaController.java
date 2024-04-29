@@ -1,8 +1,7 @@
 package com.ada.rotas.demotomtom.controller;
 
 import com.ada.rotas.demotomtom.model.rota.ExibicaoRotaDTO;
-import com.ada.rotas.demotomtom.model.rota.Rota;
-import com.ada.rotas.demotomtom.model.rota.RotaAtualizacao;
+import com.ada.rotas.demotomtom.model.rota.RotaAtualizacaoDTO;
 import com.ada.rotas.demotomtom.model.rota.pathpoint.RoutePathPoint;
 import com.ada.rotas.demotomtom.repository.RotaRepository;
 import com.ada.rotas.demotomtom.repository.RoutePathPointRepository;
@@ -14,7 +13,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("rotas")
@@ -34,7 +32,7 @@ public class RotaController {
     @GetMapping("/{id}")
     public ResponseEntity buscarPorId(@PathVariable Long id) {
         var rota = rotaRepository.getReferenceById(id);
-        return ResponseEntity.ok(new ExibicaoRotaDTO(rota));
+        return ResponseEntity.ok(rota);
     }
 
     @GetMapping
@@ -53,7 +51,7 @@ public class RotaController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid RotaAtualizacao atualizacao) {
+    public ResponseEntity atualizar(@RequestBody @Valid RotaAtualizacaoDTO atualizacao) {
         var rota = rotaRepository.getReferenceById(atualizacao.routeId());
         rota.atualizar(atualizacao);
         return ResponseEntity.ok(new ExibicaoRotaDTO(rota));

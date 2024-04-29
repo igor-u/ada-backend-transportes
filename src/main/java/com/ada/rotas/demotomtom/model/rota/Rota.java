@@ -1,6 +1,7 @@
 package com.ada.rotas.demotomtom.model.rota;
 
 import com.ada.rotas.demotomtom.model.rota.pathpoint.RoutePathPoint;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Rota {
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long routeId;
@@ -29,7 +31,7 @@ public class Rota {
         private Integer routeConfidence;
         private Integer typicalTravelTimeCoverage;
 
-        public void atualizar(RotaAtualizacao atualizacao) {
+        public void atualizar(RotaAtualizacaoDTO atualizacao) {
                 if(atualizacao.routeName() != null) {
                         this.routeName = atualizacao.routeName();
                 }

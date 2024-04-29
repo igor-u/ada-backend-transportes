@@ -14,7 +14,13 @@ public record ExibicaoRotaDTO(
         Double travelTime) {
 
         public ExibicaoRotaDTO(Rota rota) {
-            this(rota.getRouteId(), rota.getRouteName(), rota.getRouteStatus(), rota.getRoutePathPoints().stream().map(ExibicaoRoutePathPointDTO::new).toList(), rota.getPassable(), rota.getRouteLength()/1000.0, rota.getTravelTime()/60.0);
+            this(rota.getRouteId(),
+                    rota.getRouteName(),
+                    rota.getRouteStatus(),
+                    rota.getRoutePathPoints().stream().map(ExibicaoRoutePathPointDTO::new).toList(),
+                    rota.getPassable(),
+                    rota.getRouteLength()/1000.0,
+                    rota.getTravelTime()/60.0);
         }
 
 }

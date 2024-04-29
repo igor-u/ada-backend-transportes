@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.time.LocalDateTime;
 
@@ -23,7 +24,7 @@ public class Entrega {
     private LocalDateTime inicio;
     private LocalDateTime fim;
     private Boolean ativa = true;
-    @OneToOne
+    @ManyToOne
     private Rota rota;
 
     public Entrega(CadastroEntregaDTO dados) {

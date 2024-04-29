@@ -20,12 +20,12 @@ public class TokenService {
 
     public String gerarToken(Usuario usuario) {
         try {
-            var algoritmo = Algorithm.HMAC256(secret);
+            var assinatura = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("Ada Transportes")
                     .withSubject(usuario.getLogin())
                     .withExpiresAt(dataExpiracao())
-                    .sign(algoritmo);
+                    .sign(assinatura);
         } catch (JWTCreationException exception){
             throw new RuntimeException("Erro ao gerar Token jwt", exception);
         }
@@ -45,6 +45,6 @@ public class TokenService {
     }
 
     private Instant dataExpiracao() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+        return LocalDateTime.now().plusHours(12).toInstant(ZoneOffset.of("-03:00"));
     }
 }

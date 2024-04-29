@@ -12,6 +12,7 @@ public record CadastroEntregaDTO(
         @NotBlank(message = "Descrição é obrigatória")
         String descricao,
         @DateTimeFormat
+                @NotNull(message = "Início é obrigatório")
         LocalDateTime inicio,
         @DateTimeFormat
         LocalDateTime fim,

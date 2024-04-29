@@ -1,5 +1,6 @@
 package com.ada.rotas.demotomtom.controller;
 
+import com.ada.rotas.demotomtom.infra.exception.TempoInvalidoException;
 import com.ada.rotas.demotomtom.model.entrega.CadastroEntregaDTO;
 import com.ada.rotas.demotomtom.model.entrega.Entrega;
 import com.ada.rotas.demotomtom.model.entrega.ExibicaoEntregaDTO;
@@ -13,6 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("entregas")
@@ -40,6 +44,9 @@ public class EntregaController {
     @PostMapping
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid CadastroEntregaDTO dados, UriComponentsBuilder uriBuilder) {
+        if(dados.inicio().compareTo(Optional.ofNullable(dados.fim()).orElse(dados.inicio())) > 0) {
+            throw new TempoInvalidoException("A data de início deve ser menor que a data de fim");
+        }
         var entrega = new Entrega(dados);
         repository.save(entrega);
         var uri = uriBuilder.path("/entregas/{id}").buildAndExpand(entrega.getIdEntrega()).toUri();
@@ -54,10 +61,13 @@ public class EntregaController {
         return ResponseEntity.ok(new ExibicaoEntregaDTO(entrega));
     }
 
-    @PatchMapping
+    @PatchMapping("/{id}")
     @Transactional
-    public ResponseEntity finalizarEntrega(@RequestBody @Valid Entrega atualizacao) {
-        var entrega = repository.getReferenceById(atualizacao.getIdEntrega());
+    public ResponseEntity finalizarEntrega(@PathVariable Long id) {
+        var entrega = repository.getReferenceById(id);
+        if(entrega.getInicio().compareTo(LocalDateTime.now()) > 0) {
+            throw new TempoInvalidoException("A data de início deve ser menor que a data de fim");
+        }
         entrega.finalizar();
         return ResponseEntity.ok(new ExibicaoEntregaDTO(entrega));
     }
@@ -67,7 +77,7 @@ public class EntregaController {
     public ResponseEntity excluir(@PathVariable Long id) {
         var entrega = repository.getReferenceById(id);
         entrega.excluir();
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(entrega);
     }
 
 
