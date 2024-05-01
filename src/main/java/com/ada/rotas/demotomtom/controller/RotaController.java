@@ -41,14 +41,6 @@ public class RotaController {
         return ResponseEntity.ok(page);
     }
 
-//    @PostMapping
-//    @Transactional
-//    public ResponseEntity cadastrar(@RequestBody @Valid Rota rota, UriComponentsBuilder uriBuilder) {
-//        repository.save(rota);
-//        var uri = uriBuilder.path("/rotas/{id}").buildAndExpand(rota.getRouteId()).toUri();
-//        return ResponseEntity.created(uri).body(new ExibicaoRotaDTO(rota));
-//    }
-
     @PutMapping
     @Transactional
     public ResponseEntity atualizar(@RequestBody @Valid RotaAtualizacaoDTO atualizacao) {

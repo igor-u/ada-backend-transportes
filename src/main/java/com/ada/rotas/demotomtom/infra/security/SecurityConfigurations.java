@@ -27,15 +27,12 @@ public class SecurityConfigurations {
         return
                 http
                         .csrf(AbstractHttpConfigurer::disable)
-//                        .ignoringRequestMatchers("/h2-console/**"))
                         .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                         .authorizeHttpRequests(req -> {
-//                            req.requestMatchers("/h2-console/**").permitAll();
                             req.requestMatchers(HttpMethod.POST,"/login").permitAll();
                             req.anyRequest().authenticated();
                         })
                         .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-//                        .headers(headers -> headers.frameOptions().sameOrigin())
                         .build();
     }
 

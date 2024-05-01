@@ -18,11 +18,7 @@ public class UsuarioInitializer implements ApplicationRunner {
         usuario.setLogin("igor@gmail.com");
         usuario.setSenha("$2a$12$Jbd2.lDyDSkXbj/VPyjmu.Kubsn1oGdV2KCFQaQhxiSi7efVMNXAW");
 
-//        Usuario usuario1 = new Usuario();
-//        usuario1.setLogin("joao@gmail.com");
-//        usuario1.setSenha("$2a$12$0LCdUN/b6EwIntBps6fVAeT/cprU3RfUrEajZ9mx5KRlGEbyvnP6K");
-
         usuarioRepository.save(usuario);
-//        usuarioRepository.save(usuario1);
+
     }
 }

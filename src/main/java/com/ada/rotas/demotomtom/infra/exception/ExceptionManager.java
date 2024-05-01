@@ -55,7 +55,7 @@ public class ExceptionManager {
 
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity tratarErroAuthentication() {
-                                                                                                                                                                                                                                                                                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Falha na autenticação");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Falha na autenticação");
     }
 
     @ExceptionHandler(AccessDeniedException.class)
