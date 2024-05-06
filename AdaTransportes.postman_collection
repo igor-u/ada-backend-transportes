@@ -1,0 +1,468 @@
+{
+	"info": {
+		"_postman_id": "8df9d442-8677-4747-8d3e-18753b8266db",
+		"name": "Ada Transportes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29233191"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"igor@gmail.com\",\r\n    \"senha\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rota",
+			"item": [
+				{
+					"name": "Consumação",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpZ29yQGdtYWlsLmNvbSIsImlzcyI6IkFkYSBUcmFuc3BvcnRlcyIsImV4cCI6MTcxNDU3NzcxNn0.0rqGXz9vn8qeBPTZwbwZfRBjdlG3_koUr1UqLuN1778",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/routeapi/64325",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"routeapi",
+								"64325"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listagem de Rotas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpZ29yQGdtYWlsLmNvbSIsImlzcyI6IkFkYSBUcmFuc3BvcnRlcyIsImV4cCI6MTcxNDU3NzcxNn0.0rqGXz9vn8qeBPTZwbwZfRBjdlG3_koUr1UqLuN1778",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rotas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rotas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por ID de Rota",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpZ29yQGdtYWlsLmNvbSIsImlzcyI6IkFkYSBUcmFuc3BvcnRlcyIsImV4cCI6MTcxNDU3NzcxNn0.0rqGXz9vn8qeBPTZwbwZfRBjdlG3_koUr1UqLuN1778",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/rotas/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rotas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualização de Rota",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpZ29yQGdtYWlsLmNvbSIsImlzcyI6IkFkYSBUcmFuc3BvcnRlcyIsImV4cCI6MTcxNDU3NzcxNn0.0rqGXz9vn8qeBPTZwbwZfRBjdlG3_koUr1UqLuN1778",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"routeId\": 1,\r\n    \"routeName\": \"Rota 123\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rotas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rotas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exclusão de Rota",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpZ29yQGdtYWlsLmNvbSIsImlzcyI6IkFkYSBUcmFuc3BvcnRlcyIsImV4cCI6MTcxNDU3NzcxNn0.0rqGXz9vn8qeBPTZwbwZfRBjdlG3_koUr1UqLuN1778",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rotas/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rotas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Entrega",
+			"item": [
+				{
+					"name": "Cadastro de Entrega",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpZ29yQGdtYWlsLmNvbSIsImlzcyI6IkFkYSBUcmFuc3BvcnRlcyIsImV4cCI6MTcxNDU3NzcxNn0.0rqGXz9vn8qeBPTZwbwZfRBjdlG3_koUr1UqLuN1778",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Produto\",\r\n    \"inicio\": \"2024-04-30T12:08:28.097832\",\r\n    \"fim\": \"2024-04-30T14:10:44.087831\",\r\n    \"rota\": \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/entregas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"entregas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listagem de Entregas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpZ29yQGdtYWlsLmNvbSIsImlzcyI6IkFkYSBUcmFuc3BvcnRlcyIsImV4cCI6MTcxNDU3NzcxNn0.0rqGXz9vn8qeBPTZwbwZfRBjdlG3_koUr1UqLuN1778",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/entregas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"entregas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por ID de Entrega",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpZ29yQGdtYWlsLmNvbSIsImlzcyI6IkFkYSBUcmFuc3BvcnRlcyIsImV4cCI6MTcxNDU3NzcxNn0.0rqGXz9vn8qeBPTZwbwZfRBjdlG3_koUr1UqLuN1778",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/entregas/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"entregas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualização de Entrega",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpZ29yQGdtYWlsLmNvbSIsImlzcyI6IkFkYSBUcmFuc3BvcnRlcyIsImV4cCI6MTcxNDU3NzcxNn0.0rqGXz9vn8qeBPTZwbwZfRBjdlG3_koUr1UqLuN1778",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEntrega\": 2,\r\n    \"descricao\": \"Produto 123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/entregas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"entregas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finalização de Entrega",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpZ29yQGdtYWlsLmNvbSIsImlzcyI6IkFkYSBUcmFuc3BvcnRlcyIsImV4cCI6MTcxNDU3NzcxNn0.0rqGXz9vn8qeBPTZwbwZfRBjdlG3_koUr1UqLuN1778",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/entregas/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"entregas",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exclusão de Entrega",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpZ29yQGdtYWlsLmNvbSIsImlzcyI6IkFkYSBUcmFuc3BvcnRlcyIsImV4cCI6MTcxNDU3NzcxNn0.0rqGXz9vn8qeBPTZwbwZfRBjdlG3_koUr1UqLuN1778",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/entregas/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"entregas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
